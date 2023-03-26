@@ -1,0 +1,97 @@
+<div class="container mb-5">
+  <form data-aos="zoom-in" data-aos-duration="1000" (ngSubmit)="onSubmit()">
+    <h1 class="text-center my-4 fs-2">Enter the Product URL</h1>
+    <input class="form-control" type="text" placeholder="https//amazon.in/product" name="urlInput"
+      [(ngModel)]="url"><br>
+    <div class="container d-grid gap-2 col-4 mx-auto">
+      <button class="btn btn-primary mb-3 text-center" type="submit">Get Details</button>
+    </div>
+  </form>
+  <div data-aos="flip-up" class="container text-startresultDiv p-3 mb-2 bg-info-subtle text-emphasis-info"
+    *ngIf="resultDIV">
+    <p class="fs-5 note bg-primary-subtle fw-semibold"><span class="fs-4 fw-bolder ">Note : </span>The Analysis is based on the sentiments of
+      the reviews of the customer</p>
+  </div>
+</div>
+
+
+<div data-aos="flip-up" data-aos-duration="1500" class="container p-3 text-start resultDiv" *ngIf="resultDIV">
+  <p *ngIf="PosReview" class="fs-4 p-2 AnalysisResultPositive fw-semibold"><span class="fs-5 fw-semibold">Analysis Result:
+  </span>{{Report.AnalysisResult}}</p>
+  <p *ngIf="NegReview" class="fs-4 p-2 AnalysisResultNegetive fw-semibold"><span class="fs-5 fw-semibold">Analysis Result:
+  </span>{{Report.AnalysisResult}}</p>
+  <p *ngIf="ModReview" class="fs-4 p-2 AnalysisResultModerate fw-semibold"><span class="fs-5 fw-semibold">Analysis Result:
+  </span>{{Report.AnalysisResult}}</p>
+<hr>
+  <p class="fs-4 fw-semibold"><span class="fs-5  fw-semibold ">Review Pages :
+    </span>{{Report.checkedPages}}</p>
+  <p class="fs-4 fw-semibold"><span class="fs-5  fw-semibold ">Number of Reviews :
+    </span>{{Report.NumberOfReviews}}</p>
+  <p class="fs-4 fw-semibold"><span class="fs-5  fw-semibold ">Number of Positive Reviews :
+    </span>{{Report.NumberOfPOS}}</p>
+  <p class="fs-4 fw-semibold"><span class="fs-5  fw-semibold ">Number of Negetive Reviews :
+    </span>{{Report.NumberOfNEG}}</p>
+  <p *ngIf="PosReview" class="fs-4 AnalysisResultPositive fw-semibol"><span class="fs-5  fw-semibold">Assumed Product Quality :
+    </span>{{Report.AssumedProductQuality}}</p>
+  <p *ngIf="NegReview" class="fs-4 AnalysisResultNegetive fw-semibol"><span class="fs-5  fw-semibold">Assumed Product Quality :
+    </span>{{Report.AssumedProductQuality}}</p>
+  <p *ngIf="ModReview" class="fs-4 AnalysisResultModerate fw-semibol"><span class="fs-5  fw-semiboldd">Assumed Product Quality :
+    </span>{{Report.AssumedProductQuality}}</p>  
+</div>
+
+<div data-aos="zoom-out" data-aos-duration="2000" class="loader" *ngIf="loader">
+  <div class="cssload-dots">
+    <div class="cssload-dot"></div>
+    <div class="cssload-dot"></div>
+    <div class="cssload-dot"></div>
+    <div class="cssload-dot"></div>
+    <div class="cssload-dot"></div>
+  </div>
+
+
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="12"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0	0 1 0 0 0	0 0 1 0 0	0 0 0 18 -7" result="goo">
+        </feColorMatrix>
+      </filter>
+    </defs>
+  </svg>
+  <div class="container my-5">
+  <p class="text-center fw-bolder fs-4">Analysing the Reviews from all Review Pages</p>
+  <span class="text-center fw-semibold  fs-5">Analyzing products with numerous reviews may require additional time, but it could lead to a more precise analysis.</span>
+  </div>
+</div>
+
+<div data-aos="flip-up" data-aos-duration="1500" class="error" *ngIf="ErrorDIV">
+    <div class="row">
+      <div class="col-sm-11 container">
+        <div class="col-sm-12   text-center" data-aos="flip-down" data-aos-delay="500">
+          <div class="four_zero_four_bg">
+            <h1 class="text-center ">{{ErrCode}}</h1>
+          </div>
+          <div class="contant_box_404">
+            <h3 class="h2 fs-4 fw-bolder">
+              {{ErrString}}
+            </h3>
+            <button class="fs-4 btn btn-primary mb-3 text-center fw-semibold" (click)="Retry()">Try Again</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
